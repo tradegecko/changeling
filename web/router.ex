@@ -16,6 +16,7 @@ defmodule Changeling.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/changes", ChangeController, except: [:show]
   end
 
   # Other scopes may use custom stacks.

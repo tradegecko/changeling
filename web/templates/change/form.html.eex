@@ -1,0 +1,52 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if f.errors != [] do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below:</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label>Pull Request Number</label>
+    <%= number_input f, :issue_id, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Title</label>
+    <%= text_input f, :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Short Description</label>
+    <%= text_input f, :short_description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Visibility</label>
+    <%= select f, :visibility, ["Public", "Internal", "Dev"], class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <label>Type</label>
+    <%= select f, :change_type, ["New Feature", "Update", "Bugfix", "Maintenance" ], class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Full Description</label>
+    <%= text_input f, :full_description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Technical Impact</label>
+    <%= text_input f, :technical_impact, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

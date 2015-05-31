@@ -1,0 +1,38 @@
+<h2>Listing changes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>IssueId</th>
+      <th>Title</th>
+      <th>Visibility</th>
+      <th>ShortDescription</th>
+      <th>ChangeType</th>
+      <th>FullDescription</th>
+      <th>TechnicalImpact</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for change <- @changes do %>
+    <tr>
+      <td><%= change.issue_id %></td>
+      <td><%= change.title %></td>
+      <td><%= change.visibility %></td>
+      <td><%= change.short_description %></td>
+      <td><%= change.change_type %></td>
+      <td><%= change.full_description %></td>
+      <td><%= change.technical_impact %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: change_path(@conn, :show, change), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: change_path(@conn, :edit, change), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: change_path(@conn, :delete, change), method: :delete, class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New change", to: change_path(@conn, :new) %>

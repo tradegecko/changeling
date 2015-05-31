@@ -1,0 +1,42 @@
+<h2>Show change</h2>
+
+<ul>
+
+  <li>
+    <strong>IssueId:</strong>
+    <%= @change.issue_id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @change.title %>
+  </li>
+
+  <li>
+    <strong>Visibility:</strong>
+    <%= @change.visibility %>
+  </li>
+
+  <li>
+    <strong>ShortDescription:</strong>
+    <%= @change.short_description %>
+  </li>
+
+  <li>
+    <strong>ChangeType:</strong>
+    <%= @change.change_type %>
+  </li>
+
+  <li>
+    <strong>FullDescription:</strong>
+    <%= @change.full_description %>
+  </li>
+
+  <li>
+    <strong>TechnicalImpact:</strong>
+    <%= @change.technical_impact %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: change_path(@conn, :index) %>
