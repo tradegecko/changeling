@@ -23,14 +23,17 @@ form.link, form.button {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
+  ul {
+    margin-top: 10px;
+  }
 }
 .logo {
-  width: 519px;
-  height: 71px;
+  width: 220px;
+  height: 56px;
   display: inline-block;
   margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-  background-size: 519px 71px;
+  background-image: url("/images/tradegecko.png");
+  background-size: 220px 56px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
