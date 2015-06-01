@@ -10,6 +10,8 @@ defmodule Changeling.Repo.Migrations.CreateChange do
       add :change_type, :string
       add :full_description, :string
       add :technical_impact, :string
+      add :authors, :string
+      add :deployed_on, :date
 
       timestamps
     end

@@ -21,6 +21,11 @@
   </div>
 
   <div class="form-group">
+    <label>Authors</label>
+    <%= text_input f, :authors, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <label>Short Description</label>
     <%= text_input f, :short_description, class: "form-control" %>
   </div>

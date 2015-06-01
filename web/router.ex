@@ -15,12 +15,13 @@ defmodule Changeling.Router do
   scope "/", Changeling do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    resources "/changes", ChangeController, except: [:show]
+    get "/", ChangeController, :index
+    resources "/changes", ChangeController, except: [:show, :index]
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Changeling do
-  #   pipe_through :api
-  # end
+  scope "/api", Changeling.Api do
+    pipe_through :api
+    get "/changes", ChangeController, :index
+  end
 end
