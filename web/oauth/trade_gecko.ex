@@ -9,14 +9,15 @@ defmodule TradeGecko do
   # Public API
 
   def new do
+    site = System.get_env("SITE") || "https://api.tradegecko.com"
     OAuth2.new([
-      strategy: __MODULE__,
-      client_id: System.get_env("CLIENT_ID"),
+      strategy:      __MODULE__,
+      client_id:     System.get_env("CLIENT_ID"),
       client_secret: System.get_env("CLIENT_SECRET"),
-      redirect_uri: System.get_env("REDIRECT_URI"),
-      site: "https://api.tradegecko.com",
-      authorize_url: "https://api.tradegecko.com/oauth/authorize",
-      token_url: "https://api.tradegecko.com/login/oauth/token"
+      redirect_uri:  System.get_env("REDIRECT_URI"),
+      site:          site,
+      authorize_url: "#{site}/oauth/authorize",
+      token_url:     "#{site}/oauth/token"
     ])
   end
 

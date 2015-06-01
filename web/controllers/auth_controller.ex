@@ -1,5 +1,6 @@
 defmodule Changeling.AuthController do
   use Changeling.Web, :controller
+  alias Changeling.User
 
   plug :action
 
@@ -22,18 +23,24 @@ defmodule Changeling.AuthController do
     token = TradeGecko.get_token!(code: code)
 
     # Request the user's data with the access token
-    user = OAuth2.AccessToken.get!(token, "/user")
+    user_params = OAuth2.AccessToken.get!(token, "/users/current")
 
-    # Store the user in the session under `:current_user` and redirect to /.
-    # In most cases, we'd probably just store the user's ID that can be used
-    # to fetch from the database. In this case, since this example app has no
-    # database, I'm just storing the user map.
-    #
-    # If you need to make additional resource requests, you may want to store
-    # the access token as well.
-    conn
-    |> put_session(:current_user, user)
-    |> put_session(:access_token, token.access_token)
-    |> redirect(to: "/")
+    if User.authenticate(user_params) do
+      # Store the user in the session under `:current_user` and redirect to /.
+      # In most cases, we'd probably just store the user's ID that can be used
+      # to fetch from the database. In this case, since this example app has no
+      # database, I'm just storing the user map.
+      #
+      # If you need to make additional resource requests, you may want to store
+      # the access token as well.
+      conn
+      |> put_session(:current_user, user_params["user"])
+      |> put_session(:access_token, token.access_token)
+      |> redirect(to: change_path(conn, :index))
+    else
+      conn
+      |> put_flash(:error, "Access Denied.")
+      |> redirect(to: "/")
+    end
   end
 end

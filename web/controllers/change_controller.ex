@@ -4,6 +4,7 @@ defmodule Changeling.ChangeController do
   alias Changeling.Change
 
   plug :scrub_params, "change" when action in [:create, :update]
+  plug :authenticate_user!
   plug :action
 
   def index(conn, _params) do
@@ -63,5 +64,15 @@ defmodule Changeling.ChangeController do
     conn
     |> put_flash(:info, "Change deleted successfully.")
     |> redirect(to: change_path(conn, :index))
+  end
+
+  defp authenticate_user!(conn, params) do
+    if get_session(conn, :current_user) do
+      conn
+    else
+      conn
+      |> put_flash(:error, "Access Denied")
+      |> redirect(to: "/")
+    end
   end
 end
