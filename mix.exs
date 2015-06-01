@@ -17,7 +17,7 @@ defmodule Changeling.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Changeling, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :oauth2,
                     :phoenix_ecto, :postgrex]]
   end
 
