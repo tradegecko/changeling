@@ -35,6 +35,10 @@
     <%= select f, :visibility, ["Public", "Internal", "Dev"], class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <label>Deployed</label>
+    <%= date_select f, :deployed_on, class: "form-control" %>
+  </div>
 
   <div class="form-group">
     <label>Type</label>

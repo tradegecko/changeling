@@ -10,7 +10,7 @@ defmodule Changeling.Change do
     field :full_description, :string
     field :technical_impact, :string
     field :authors, :string
-    field :deployed_on, :date
+    field :deployed_on, Ecto.Date
 
     timestamps
   end
