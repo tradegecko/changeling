@@ -31,6 +31,7 @@ defmodule Changeling.Change do
 
   def public(query) do
     from p in query,
-    where: p.visibility == "Public"
+    where: p.visibility == "Public",
+    order_by: [desc: p.deployed_on]
   end
 end
